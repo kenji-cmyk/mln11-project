@@ -4,13 +4,13 @@ export type ModelPose = { x: number; y: number; scale: number; opacity: number; 
 const pose = (x: number, y: number, scale: number, opacity = 1, yaw = 0): ModelPose => ({ x, y, scale, opacity, yaw });
 export const MODEL_SCROLL_STATES = {
   desktop: [
-    pose(27, -27, 0.14, 0.3, -0.46),
-    pose(23, 2, 0.92), pose(-23, -5, 1.03), pose(23, 8, 1.13),
+    pose(27, -27, 0.14, 0, -0.46),
+    pose(23, 2, 0.92), pose(-23, -5, 1.03), pose(23, -2, 1.13),
     pose(-23, 3, 1.02), pose(22, -5, 1.08),
     pose(48, 49, 0.2, 0, 0.72),
   ],
   mobile: [
-    pose(24, -28, 0.2, 0.3, -0.46),
+    pose(24, -28, 0.2, 0, -0.46),
     pose(6, -20, 1.05), pose(-9, -23, 1.12), pose(8, -17, 1.22),
     pose(-7, -21, 1.10), pose(7, -19, 1.15),
     pose(38, 40, 0.2, 0, 0.72),
