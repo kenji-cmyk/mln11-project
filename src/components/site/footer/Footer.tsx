@@ -8,12 +8,14 @@ const finalFrame = "/footer/footer_final.jpg";
 
 export function Footer() {
   const artRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLElement>(null);
   const stillRef = useRef<HTMLImageElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const started = useRef(false);
   const finished = useRef(false);
   const [playVideo, setPlayVideo] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -47,8 +49,27 @@ export function Footer() {
     };
   }, []);
 
+  useEffect(() => {
+    const footer = footerRef.current;
+    if (!footer) return;
+
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (preference.matches) setRevealed(true);
+    const reveal = new IntersectionObserver(([entry]) => {
+      setRevealed(entry.isIntersecting);
+    }, { threshold: 0 });
+    reveal.observe(footer);
+
+    const onPreferenceChange = () => { if (preference.matches) setRevealed(true); };
+    preference.addEventListener("change", onPreferenceChange);
+    return () => {
+      reveal.disconnect();
+      preference.removeEventListener("change", onPreferenceChange);
+    };
+  }, []);
+
   return (
-    <footer className="story-footer" aria-labelledby="footer-heading">
+    <footer ref={footerRef} className={`story-footer ${revealed ? "is-revealed" : ""}`} aria-labelledby="footer-heading">
       <div ref={artRef} className="story-footer-art" aria-hidden="true">
         <Image ref={stillRef} src={finalFrame} alt="" width={736} height={1308} unoptimized className="story-footer-media" />
         {playVideo && <video
