@@ -76,7 +76,7 @@ html { scroll-padding-top: 0; }
   .journey-copy h2 { font-size: 30px; }
 }
 /* Restored opening and closing artwork. Keep the original paired image/video geometry. */
-.hero { min-height: 620px; }
+.hero { min-height: 620px; background: var(--paper); }
 .hero-art { inset: 0; width: 100%; mask-image: linear-gradient(to bottom, transparent, #000 4%, #000 96%, transparent); }
 .hero-media { width: max(100svh, 56.25vw); height: max(100vw, 177.777778svh); max-width: none; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-90deg); object-fit: contain; object-position: center; }
 .hero::after { height: 12%; }
@@ -112,7 +112,7 @@ html { scroll-padding-top: 0; }
 .journey-stop, .journey-stop:first-child, .journey-stop:last-child { min-height: 125svh; padding: 100px 7%; align-items: flex-start; }
 .journey-copy { width: 39%; max-width: 540px; margin-top: calc(35svh - 100px); transform-origin: center; }
 .journey-stop--right { justify-content: flex-end; }
-.journey-chapters { background: var(--paper); }
+.journey-chapters { background: linear-gradient(90deg, #f2eee588, #f2eee533); }
 @media (max-width: 1050px) and (min-width: 761px) {
   .journey-copy { width: 40%; }
   .journey-copy h2 { font-size: 39px; }
@@ -126,6 +126,7 @@ html { scroll-padding-top: 0; }
   .hero h1 { font-size: clamp(62px, 16vw, 90px); }
   .hero-bottom .folio { display: none; }
   .journey-visual { background: transparent; }
+  .journey-chapters { background: #f2eee5b8; }
   .journey-canvas { inset: 0; transform: translate3d(24%, -28%, 0) scale(0.2); opacity: 0; }
   .journey-stop, .journey-stop:first-child, .journey-stop:last-child { min-height: 125svh; padding: 52svh 8% 120px; }
   .journey-copy { width: 100%; max-width: none; margin-top: 0; background: transparent; box-shadow: none; }
