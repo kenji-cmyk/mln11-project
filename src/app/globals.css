@@ -21,8 +21,8 @@
 
 * { box-sizing: border-box; }
 html { background: var(--paper); scroll-behavior: smooth; scroll-padding-top: 48px; }
-body { margin: 0; background: var(--paper) url("/body_bg_01.jpg") left top / auto 100svh repeat-y; color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.8; -webkit-font-smoothing: antialiased; }
-body::after { content: ""; position: fixed; inset: 0; z-index: 50; pointer-events: none; background: url("/paper-grain.svg"); opacity: 0.11; mix-blend-mode: multiply; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.8; -webkit-font-smoothing: antialiased; }
+body::after { content: ""; position: fixed; inset: 0; z-index: 50; pointer-events: none; background: url("/paper-grain.svg"); opacity: 0.055; mix-blend-mode: multiply; }
 ::selection { background: var(--accent); color: var(--ink); }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; }

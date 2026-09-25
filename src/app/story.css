@@ -76,8 +76,8 @@ html { scroll-padding-top: 0; }
   .journey-copy h2 { font-size: 30px; }
 }
 /* Restored opening and closing artwork. Keep the original paired image/video geometry. */
-.hero { min-height: 620px; background: var(--paper); }
-.hero-art { inset: 0; width: 100%; mask-image: linear-gradient(to bottom, transparent, #000 4%, #000 96%, transparent); }
+.hero { min-height: 620px; background: radial-gradient(ellipse 42% 48% at 77% 52%, #e9dcc78c, transparent 78%), var(--paper); }
+.hero-art { inset: 0; width: 100%; mask-image: radial-gradient(ellipse 85% 83% at 22% 48%, #000 38%, transparent 100%); }
 .hero-media { width: max(100svh, 56.25vw); height: max(100vw, 177.777778svh); max-width: none; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-90deg); object-fit: contain; object-position: center; }
 .hero::after { height: 12%; }
 .hero-content { left: 35%; top: 26%; }
@@ -87,7 +87,7 @@ html { scroll-padding-top: 0; }
 .hero-bottom { bottom: 25px; }
 .hero-bottom .scroll-link { margin-left: 0; }
 .hero-edition { visibility: hidden; }
-.story-footer { position: relative; isolation: isolate; min-height: 620px; height: 100svh; overflow: hidden; background: var(--paper); }
+.story-footer { position: relative; isolation: isolate; min-height: 620px; height: 100svh; overflow: hidden; background: radial-gradient(ellipse 42% 45% at 69% 52%, #e9dcc76b, transparent 80%), var(--paper); }
 .story-footer-art { position: absolute; inset: 0; overflow: hidden; }
 .story-footer-media { position: absolute; left: 50%; top: 50%; width: max(100svh, 56.25vw); height: max(100vw, 177.777778svh); max-width: none; transform: translate(-50%, -50%) rotate(-90deg); object-fit: contain; }
 .story-footer-video { opacity: 0; transition: opacity 300ms ease; }
@@ -108,11 +108,18 @@ html { scroll-padding-top: 0; }
 /* The same canvas travels over the artwork and through the chapter layouts. */
 .model-journey { overflow-x: clip; }
 .journey-visual { z-index: 2; background: transparent; }
-.journey-canvas { inset: 0; transform-origin: 50% 50%; transform: translate3d(27%, -27%, 0) scale(0.14); opacity: 0; }
+.journey-canvas { inset: 0; isolation: isolate; transform-origin: 50% 50%; transform: translate3d(27%, -27%, 0) scale(0.14); opacity: 0; }
+.journey-canvas::before { content: ""; position: absolute; z-index: -1; left: 50%; top: 82%; width: 38%; height: 9%; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(ellipse, #604a3c40, #604a3c15 48%, transparent 74%); filter: blur(10px); pointer-events: none; }
 .journey-stop, .journey-stop:first-child, .journey-stop:last-child { min-height: 125svh; padding: 100px 7%; align-items: flex-start; }
-.journey-copy { width: 39%; max-width: 540px; margin-top: calc(35svh - 100px); transform-origin: center; }
+.journey-copy { position: relative; z-index: 1; width: 39%; max-width: 540px; margin-top: calc(35svh - 100px); transform-origin: center; }
 .journey-stop--right { justify-content: flex-end; }
-.journey-chapters { background: linear-gradient(90deg, #f2eee588, #f2eee533); }
+.journey-chapters { background: var(--paper); }
+.journey-stop { position: relative; isolation: isolate; background: radial-gradient(ellipse 40% 40% at 74% 52%, #cdb58b34, transparent 78%), linear-gradient(115deg, #f5f1e9, #f0eadd); }
+.journey-stop--right { background: radial-gradient(ellipse 40% 40% at 26% 52%, #cdb58b34, transparent 78%), linear-gradient(245deg, #f5f1e9, #f0eadd); }
+.journey-stop::before { content: ""; position: absolute; z-index: 0; inset: 0 auto 0 0; width: min(55vw, 740px); background: url("/body_bg_01.jpg") left center / auto 100% no-repeat; opacity: 0.16; mask-image: linear-gradient(to right, #000 8%, #000 25%, transparent 100%); pointer-events: none; }
+.journey-stop:first-child::before { opacity: 0.2; }
+.journey-stop::after { content: ""; position: absolute; z-index: 0; right: 9%; top: 19%; width: min(35vw, 620px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, transparent 51%, #8f725c16 51.2%, #8f725c16 51.35%, transparent 51.6%, transparent 66%, #8f725c0c 66.2%, #8f725c0c 66.35%, transparent 66.6%); pointer-events: none; }
+.journey-stop--right::after { right: auto; left: 9%; }
 @media (max-width: 1050px) and (min-width: 761px) {
   .journey-copy { width: 40%; }
   .journey-copy h2 { font-size: 39px; }
@@ -120,14 +127,18 @@ html { scroll-padding-top: 0; }
 }
 @media (max-width: 760px) {
   .hero { min-height: 720px; }
-  .hero-art { mask-image: linear-gradient(to bottom, #000 0%, #000 80%, transparent 100%); }
+  .hero-art { mask-image: radial-gradient(ellipse 94% 76% at 50% 29%, #000 35%, transparent 100%); }
   .hero .hero-media { width: 100%; height: 100%; aspect-ratio: auto; left: 50%; top: 50%; transform: translate(-50%, -50%); object-fit: cover; object-position: center; }
   .hero-content { left: 8%; right: 8%; top: 31%; }
   .hero h1 { font-size: clamp(62px, 16vw, 90px); }
   .hero-bottom .folio { display: none; }
   .journey-visual { background: transparent; }
-  .journey-chapters { background: #f2eee5b8; }
+  .journey-stop, .journey-stop--right { background: radial-gradient(ellipse 70% 33% at 50% 23%, #cdb58b36, transparent 82%), linear-gradient(180deg, #f5f1e9, #f0eadd); }
+  .journey-stop::before { width: 100%; opacity: 0.1; mask-image: linear-gradient(to bottom, #000, transparent 78%); }
+  .journey-stop:first-child::before { opacity: 0.12; }
+  .journey-stop::after, .journey-stop--right::after { width: min(72vw, 360px); left: 50%; right: auto; top: 9%; transform: translateX(-50%); }
   .journey-canvas { inset: 0; transform: translate3d(24%, -28%, 0) scale(0.2); opacity: 0; }
+  .journey-canvas::before { top: 76%; width: 55%; height: 10%; }
   .journey-stop, .journey-stop:first-child, .journey-stop:last-child { min-height: 125svh; padding: 52svh 8% 120px; }
   .journey-copy { width: 100%; max-width: none; margin-top: 0; background: transparent; box-shadow: none; }
   .story-footer { height: auto; min-height: 0; overflow: visible; }
