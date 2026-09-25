@@ -92,11 +92,13 @@ html { scroll-padding-top: 0; }
 .story-footer-media { position: absolute; left: 50%; top: 50%; width: max(100svh, 56.25vw); height: max(100vw, 177.777778svh); max-width: none; transform: translate(-50%, -50%) rotate(-90deg); object-fit: contain; }
 .story-footer-video { opacity: 0; transition: opacity 300ms ease; }
 .story-footer-video.is-playing { opacity: 1; }
-.story-footer-content { position: absolute; z-index: 1; left: 42%; top: 29%; width: 48%; max-width: 670px; }
+.story-footer-content { position: absolute; z-index: 1; left: 42%; top: 21%; width: 54%; max-width: 900px; }
 .story-footer-content .eyebrow { color: var(--muted); font-size: 9px; }
 .story-footer-content .eyebrow span { margin-inline: 12px; }
 .story-footer-content h2 { margin-top: 24px; font-size: clamp(42px, 4.4vw, 76px); line-height: 1.24; }
-.story-footer-content h2 em { color: #6a4e37; }
+.story-footer-content .story-footer-poem { margin: 0; font-size: clamp(24px, 2.2vw, 38px); line-height: 1.62; letter-spacing: -0.035em; }
+.story-footer-poem > span { display: block; }
+.story-footer-poem > span:last-child { color: #886041; font-style: italic; }
 .story-footer-quiz { display: inline-flex; align-items: center; gap: 24px; margin-top: 28px; min-height: 44px; border-bottom: 1px solid var(--line); font-size: 12px; }
 .story-footer-quiz:hover { border-color: var(--ink); }
 .story-footer-quiz span { font-size: 19px; }
@@ -123,7 +125,7 @@ html { scroll-padding-top: 0; }
 @media (max-width: 1050px) and (min-width: 761px) {
   .journey-copy { width: 40%; }
   .journey-copy h2 { font-size: 39px; }
-  .story-footer-content { left: 39%; width: 55%; }
+  .story-footer-content { left: 39%; width: 58%; }
 }
 @media (max-width: 760px) {
   .hero { min-height: 720px; }
@@ -145,7 +147,7 @@ html { scroll-padding-top: 0; }
   .story-footer-art { position: relative; aspect-ratio: 16 / 9; }
   .story-footer-media { width: 56.25vw; height: 100vw; }
   .story-footer-content { position: relative; left: auto; top: auto; width: auto; max-width: none; padding: 35px 8% 48px; }
-  .story-footer-content h2 { font-size: clamp(35px, 8vw, 54px); }
+  .story-footer-content .story-footer-poem { font-size: clamp(19px, 4.8vw, 24px); line-height: 1.55; }
   .story-footer-bottom { position: relative; left: auto; right: auto; bottom: auto; padding: 22px 8% 30px; border-top: 1px solid var(--line); flex-wrap: wrap; }
   .story-footer-bottom p { order: 3; flex-basis: 100%; }
 }

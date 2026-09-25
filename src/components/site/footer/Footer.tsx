@@ -64,9 +64,13 @@ export function Footer() {
       </div>
 
       <div className="story-footer-content">
-        <p className="eyebrow">MLN111 <span aria-hidden="true">/</span> Ôn tập</p>
-        <h2 id="footer-heading">Những khái niệm<br /><em>đáng được<br />nhớ lại.</em></h2>
-        <Link className="story-footer-quiz" href="/on-tap" prefetch={false}>Ôn lại 5 câu hỏi <span aria-hidden="true">↗</span></Link>
+        <h2 id="footer-heading" className="story-footer-poem">
+          <span>Sáng ra bờ suối, tối vào hang,</span>
+          <span>Cháo bẹ rau măng vẫn sẵn sàng.</span>
+          <span>Bàn đá chông chênh dịch sử Đảng,</span>
+          <span>Cuộc đời cách mạng thật là sang.</span>
+        </h2>
+        <Link className="story-footer-quiz" href="/on-tap" prefetch={false}>Khám phá <span aria-hidden="true">↗</span></Link>
       </div>
 
       <div className="story-footer-bottom">
