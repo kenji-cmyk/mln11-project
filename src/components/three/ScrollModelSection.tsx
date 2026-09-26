@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { Hero } from "@/components/site/hero/Hero";
 import { Footer } from "@/components/site/footer/Footer";
+import { LeafBackground } from "@/components/visual/LeafBackground";
 import { journeyChapters } from "@/lib/content/journey-content";
 import { SceneMotion, sampleScrollProgress } from "./motion";
 import { sampleComposition } from "./composition";
@@ -18,6 +19,14 @@ const READING_TIMING = {
   mobileReadingLine: 0.52,
   damping: 8,
 };
+
+const LEAF_VARIANTS = [
+  { position: "right", intensity: "low", phaseSeconds: 0 },
+  { position: "left", intensity: "low", phaseSeconds: 1.6 },
+  { position: "right", intensity: "medium", phaseSeconds: 3.2 },
+  { position: "left", intensity: "low", phaseSeconds: 4.8, mirror: true },
+  { position: "wide", intensity: "low", phaseSeconds: 6.4 },
+] as const;
 
 // Layout coordinates exclude the transforms applied to the text during scroll.
 function layoutTop(element: HTMLElement) {
@@ -150,6 +159,7 @@ export function ScrollModelSection() {
         <div id="noi-dung" className="journey-chapters">
           {journeyChapters.map((chapter, index) => (
             <section id={chapter.id} className={`journey-stop ${index % 2 ? "journey-stop--right" : ""}`} key={chapter.id} aria-labelledby={`${chapter.id}-title`}>
+              <LeafBackground {...LEAF_VARIANTS[index]} />
               <div className="journey-copy">
                 <h2 id={`${chapter.id}-title`}>{chapter.title}<br /><em>{chapter.emphasis}</em></h2>
                 <p className="journey-description">{chapter.body}</p>

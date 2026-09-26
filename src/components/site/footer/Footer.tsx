@@ -54,9 +54,8 @@ export function Footer() {
     if (!footer) return;
 
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (preference.matches) setRevealed(true);
     const reveal = new IntersectionObserver(([entry]) => {
-      setRevealed(entry.isIntersecting);
+      setRevealed(preference.matches || entry.isIntersecting);
     }, { threshold: 0 });
     reveal.observe(footer);
 

@@ -147,7 +147,7 @@ export function Quiz() {
   const percent = questions.length ? Math.round(100 * correctCount / questions.length) : 0;
   const completionPercent = questions.length ? Math.round(100 * answeredCount / questions.length) : 0;
   const accuracyPercent = answeredCount ? Math.round(100 * correctCount / answeredCount) : 0;
-  const elapsed = startedAt === null ? 0 : Math.max(0, (finishedAt ?? Date.now()) - startedAt);
+  const elapsed = startedAt === null || finishedAt === null ? 0 : Math.max(0, finishedAt - startedAt);
   const resultMessage = resultMessages.find((item) => percent >= item.min && percent <= item.max)
     ?? resultMessages[resultMessages.length - 1];
   const resultContext = unansweredCount > 0
