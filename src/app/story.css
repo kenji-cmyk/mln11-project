@@ -117,7 +117,8 @@ html { scroll-padding-top: 0; }
 /* The same canvas travels over the artwork and through the chapter layouts. */
 .model-journey { overflow-x: clip; }
 .journey-visual { z-index: 2; background: transparent; }
-.journey-canvas { inset: 0; isolation: isolate; transform-origin: 50% 50%; transform: translate3d(27%, -27%, 0) scale(0.14); opacity: 0; }
+.journey-canvas { z-index: 1; inset: 0; isolation: isolate; transform-origin: 50% 50%; transform: translate3d(27%, -27%, 0) scale(0.14); opacity: 0; }
+.journey-leaf-host { position: absolute; z-index: 2; inset: 0; overflow: hidden; pointer-events: none; }
 .journey-canvas::before { content: ""; position: absolute; z-index: -1; left: 50%; top: 82%; width: 38%; height: 9%; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(ellipse, #604a3c40, #604a3c15 48%, transparent 74%); filter: blur(10px); pointer-events: none; }
 .journey-stop, .journey-stop:first-child, .journey-stop:last-child { min-height: 125svh; padding: 100px 7%; align-items: flex-start; }
 .journey-copy { position: relative; z-index: 1; width: 39%; max-width: 540px; margin-top: calc(35svh - 100px); transform-origin: center; }

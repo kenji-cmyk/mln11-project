@@ -1,9 +1,13 @@
+.anchor { display: none; }
+
 .root {
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+  opacity: var(--leaf-exposure, 1);
+  transition: opacity 600ms ease;
 }
 
 .video {
@@ -18,9 +22,12 @@
   transition: opacity 1100ms ease;
 }
 
-.root[data-ready="true"] .video { opacity: var(--leaf-opacity); }
-.low { --leaf-opacity: .42; }
-.medium { --leaf-opacity: .52; }
+.root[data-ready="true"][data-active="true"] .video { opacity: var(--leaf-opacity); }
+.low { --leaf-opacity: .7; }
+.medium { --leaf-opacity: .8; }
+.foreground { z-index: 2; }
+.foreground .video { transform: scale(1.08); }
+.foreground.mirror .video { transform: scale(1.08) scaleX(-1); }
 
 /* The chapter copy sits on the opposite side of each soft mask. */
 .right {
@@ -40,16 +47,16 @@
 .mirror .video { transform: scaleX(-1); }
 
 @media (max-width: 1050px) {
-  .low { --leaf-opacity: .34; }
-  .medium { --leaf-opacity: .4; }
+  .low { --leaf-opacity: .56; }
+  .medium { --leaf-opacity: .66; }
 }
 
 @media (max-width: 760px) {
   .root {
     mask-image: linear-gradient(to bottom, #0004, #0006 22%, #0003 41%, transparent 54%);
   }
-  .low { --leaf-opacity: .24; }
-  .medium { --leaf-opacity: .29; }
+  .low { --leaf-opacity: .43; }
+  .medium { --leaf-opacity: .52; }
   .video { object-position: center; }
 }
 

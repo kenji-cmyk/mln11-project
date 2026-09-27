@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import styles from "./LeafBackground.module.css";
 
 type LeafBackgroundProps = {
@@ -8,6 +9,7 @@ type LeafBackgroundProps = {
   intensity?: "low" | "medium";
   phaseSeconds?: number;
   mirror?: boolean;
+  portalHost?: HTMLElement | null;
 };
 
 const videoSource = "/falling_leaves_overlay.webm";
@@ -17,7 +19,9 @@ export function LeafBackground({
   intensity = "low",
   phaseSeconds = 0,
   mirror = false,
+  portalHost,
 }: LeafBackgroundProps) {
+  const anchorRef = useRef<HTMLSpanElement>(null);
   const layerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -25,6 +29,8 @@ export function LeafBackground({
     const layer = layerRef.current;
     const video = videoRef.current;
     if (!layer || !video) return;
+    const observeTarget = portalHost !== undefined ? anchorRef.current?.closest("section") : layer;
+    if (!observeTarget) return;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let nearViewport = false;
@@ -36,9 +42,11 @@ export function LeafBackground({
 
     const syncPlayback = () => {
       if (!nearViewport || reducedMotion.matches || document.hidden || failed) {
+        delete layer.dataset.active;
         video.pause();
         return;
       }
+      layer.dataset.active = "true";
       if (!sourceAttached) {
         sourceAttached = true;
         video.src = videoSource;
@@ -89,6 +97,7 @@ export function LeafBackground({
       failed = true;
       video.pause();
       delete layer.dataset.ready;
+      delete layer.dataset.active;
     };
 
     const onSeeked = () => {
@@ -98,8 +107,9 @@ export function LeafBackground({
 
     const observer = new IntersectionObserver(([entry]) => {
       nearViewport = entry.isIntersecting;
+      if (portalHost) layer.style.setProperty("--leaf-exposure", String(Math.min(1, entry.intersectionRatio * 1.3)));
       syncPlayback();
-    }, { rootMargin: "180px 0px", threshold: 0 });
+    }, { rootMargin: portalHost ? "0px" : "180px 0px", threshold: portalHost ? [0, 0.15, 0.35, 0.55, 0.75] : 0 });
 
     video.addEventListener("loadedmetadata", applyPhase);
     video.addEventListener("loadeddata", checkTransparency);
@@ -107,7 +117,7 @@ export function LeafBackground({
     video.addEventListener("error", onError);
     reducedMotion.addEventListener("change", syncPlayback);
     document.addEventListener("visibilitychange", syncPlayback);
-    observer.observe(layer);
+    observer.observe(observeTarget);
 
     return () => {
       observer.disconnect();
@@ -119,11 +129,11 @@ export function LeafBackground({
       reducedMotion.removeEventListener("change", syncPlayback);
       document.removeEventListener("visibilitychange", syncPlayback);
     };
-  }, [phaseSeconds]);
+  }, [phaseSeconds, portalHost]);
 
-  return <div
+  const layer = <div
     ref={layerRef}
-    className={[styles.root, styles[position], styles[intensity], mirror ? styles.mirror : ""].join(" ")}
+    className={[styles.root, styles[position], styles[intensity], mirror ? styles.mirror : "", portalHost ? styles.foreground : ""].join(" ")}
     aria-hidden="true"
   >
     <video
@@ -140,4 +150,9 @@ export function LeafBackground({
       disablePictureInPicture
     />
   </div>;
+
+  return portalHost === undefined ? layer : <>
+    <span ref={anchorRef} className={styles.anchor} aria-hidden="true" />
+    {portalHost && createPortal(layer, portalHost)}
+  </>;
 }
