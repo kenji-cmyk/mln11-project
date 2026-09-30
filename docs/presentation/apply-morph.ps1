@@ -168,7 +168,7 @@ try {
     $destinationStream = $null
     [System.IO.File]::Move($temporaryPath, $destinationPath)
     $temporaryPath = $null
-    Write-Output "Added Morph transitions to slides 2–${slideCount}: $destinationPath"
+    Write-Output "Added Morph transitions to slides 2-${slideCount}: $destinationPath"
     Write-Output 'For the smoothest result, export the slides as editable PowerPoint objects; flattened slides only transition as images.'
 }
 finally {

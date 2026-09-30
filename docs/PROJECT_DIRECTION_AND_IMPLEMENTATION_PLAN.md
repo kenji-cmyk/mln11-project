@@ -24,4 +24,6 @@ Playwright: ảnh hero/footer có mặt, đúng hai nguồn video gốc, model �
 
 Ảnh lần này: `.work/restored-hero.png`, `.work/restored-morph.png`, `.work/restored-footer.png`, `.work/restored-mobile-hero.png`, `.work/restored-mobile-morph.png`.
 
+Kiểm tra bổ sung ngày 30/09/2026 sau khi thêm nền giấy: [PAPER_BACKGROUND_CHECK.md](PAPER_BACKGROUND_CHECK.md). Nền và responsive đã kiểm chứng; lượt này phát hiện trang thực tế thiếu nút dừng 3D và model vẫn chuyển động theo cuộn khi bật reduced motion. Hai mô tả này ở phần triển khai chưa được đáp ứng đầy đủ.
+
 Báo cáo `UI_UX_AUDIT.md` là kết quả lượt trước; các phần mô tả bố cục bỏ hero/footer trong đó không còn áp dụng. Chưa kiểm tra thiết bị cảm ứng thật.
